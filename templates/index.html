@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de usuario</h1>
+        <form action="/guardar" method="post">
+            Nombre: <input type="text" name="nombre"><br>
+            Email: <input type="text" name="email"><br>
+            <input type="submit" value="Guardar">
+        </form>
+    </div>
+</body>
+</html>
+
+
