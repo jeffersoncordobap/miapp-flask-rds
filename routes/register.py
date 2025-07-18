@@ -1,5 +1,6 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, request, redirect, render_template
 from controllers.user_controller import guardar_usuario
+from config.s3 import subir_a_s3
 
 register_bp = Blueprint('register', __name__)
 
@@ -11,5 +12,10 @@ def index():
 def guardar():
     nombre = request.form['nombre']
     email = request.form['email']
-    guardar_usuario(nombre, email)
-    return "¡Datos guardados exitosamente!"
+    
+    # Manejo del archivo
+    foto = request.files['foto']
+    foto_url = subir_a_s3(foto) if foto else None
+
+    guardar_usuario(nombre, email, foto_url)
+    return redirect('/')
